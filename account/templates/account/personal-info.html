@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Surf | Personal Information</title>
 </head>
-
+{% block content %}
 <body>
     <header>
         <h1>Personal Information</h1>
     </header>
 
     <form action="" method="POST">
+        {% csrf_token %}
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="fname">
 
@@ -35,5 +36,5 @@
         <input type="submit" value="Update">
     </form>
 </body>
-
+{% endblock content %}
 </html>
