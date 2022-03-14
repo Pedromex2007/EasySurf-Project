@@ -7,4 +7,7 @@ def logout_view(request):
 
 def update_account_info(request):
     context = {}
+    if request.method == "POST":
+        fname = request.POST.get("fname")
+        print(fname)
     return render(request, "account/personal-info.html", context=context)

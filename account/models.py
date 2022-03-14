@@ -49,6 +49,8 @@ class Account(AbstractBaseUser):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    birth_date = models.DateField()
+    phone_number = models.PositiveIntegerField()
 
     home_address = models.CharField(max_length=40)
 
