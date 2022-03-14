@@ -31,7 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    #IMPLEMENTED APPS
     'easysurfHome.apps.EasysurfhomeConfig',
+    'account',
+
+    #DEFAULT APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,30 +73,32 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.Account'
+
 WSGI_APPLICATION = 'easysurf.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-#Defualt SQLLite database. Use this if things go awry.
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-#Personal PI server for testing purposes. Please don't hack me...
+#Defualt SQLLite database. Use this if things go awry or if making database modifications that require extensive testing.
 DATABASES = {
     'default': {
-        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
-        'NAME'    : 'easysurf',                 # <-- UPDATED line 
-        'USER'    : 'easysurfadmin',                     # <-- UPDATED line
-        'PASSWORD': 'ezsurfer11',              # <-- UPDATED line
-        'HOST'    : '76.110.248.24',                # <-- UPDATED line
-        'PORT'    : '1530',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+#Personal PI server for testing purposes. Please don't hack me...
+#DATABASES = {
+#    'default': {
+#        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
+#        'NAME'    : 'easysurf',                 # <-- UPDATED line 
+#        'USER'    : 'easysurfadmin',                     # <-- UPDATED line
+#        'PASSWORD': 'ezsurfer11',              # <-- UPDATED line
+#        'HOST'    : '76.110.248.24',                # <-- UPDATED line
+#        'PORT'    : '1530',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
