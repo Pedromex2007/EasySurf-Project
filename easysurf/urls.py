@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from account.views import (
+    logout_view,
+)
+
 # easysurfHome will be the front page of the site.
 urlpatterns = [
     path('admin/', admin.site.urls),

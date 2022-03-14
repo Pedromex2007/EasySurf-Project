@@ -8,6 +8,10 @@ class MainAccountManager(BaseUserManager):
             raise ValueError("Email not defined for user!")
         if not username:
             raise ValueError("Username not defined!")
+        if not first_name:
+            raise ValueError("First name not defined!")
+        if not last_name:
+            raise ValueError("Last name not defined!")
         user = self.model(
             email=self.normalize_email(email),
             username=username,
