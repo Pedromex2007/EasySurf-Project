@@ -2,8 +2,11 @@ from tkinter.messagebox import YES
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
 class MainAccountManager(BaseUserManager):
-    def create_user(self, email, username, first_name, last_name, password=None):
+    '''This will manage our account base and ensure proper fields are filled when creating a new user.'''
+
+    def create_user(self, email, username, first_name, last_name, birth_date, password=None):
         if not email:
             raise ValueError("Email not defined for user!")
         if not username:
@@ -12,23 +15,27 @@ class MainAccountManager(BaseUserManager):
             raise ValueError("First name not defined!")
         if not last_name:
             raise ValueError("Last name not defined!")
+        if not birth_date:
+            raise ValueError("Birth date not defined!")
         user = self.model(
             email=self.normalize_email(email),
             username=username,
             first_name=first_name,
             last_name=last_name,
+            birth_date=birth_date,
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, first_name, last_name, password=None):
+    def create_superuser(self, email, username, first_name, last_name, birth_date, password=None):
         user = self.create_user(
             email=self.normalize_email(email),
             username=username,
             password=password,
             first_name=first_name,
             last_name=last_name,
+            birth_date=birth_date,
         ) 
         user.is_admin = True
         user.is_superuser = True
@@ -36,8 +43,9 @@ class MainAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
 class Account(AbstractBaseUser):
+    '''This is the account base we're using. You can add/remove/edit any fields as neccessary.'''
+
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
@@ -49,13 +57,13 @@ class Account(AbstractBaseUser):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    #birth_date = models.DateField()
-    #phone_number = models.PositiveIntegerField()
+    birth_date = models.DateField()
+    phone_number = models.CharField(max_length=12)
 
     home_address = models.CharField(max_length=40)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'birth_date']
 
     objects = MainAccountManager()
 

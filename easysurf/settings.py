@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-#Personal PI server for testing purposes. Please don't hack me...
+#Personal PI server for production/presentation use. Please don't hack me...
 #DATABASES = {
 #    'default': {
 #        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
