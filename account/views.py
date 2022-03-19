@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from account.forms import AccountAuthenticationForm
+from account.forms import AccountAuthenticationForm, AccountUpdateForm
 
 def logout_view(request):
     logout(request)
@@ -27,7 +27,7 @@ def login_view(request):
     return render(request, 'account/login.html', context)
 
 
-def update_account_info(request):
+def undefneind_method(request):
     if(request.user.is_authenticated):
         context = {}
         if request.method == "POST":
@@ -36,3 +36,25 @@ def update_account_info(request):
         return render(request, "account/personal-info.html", context=context)
     else:
         return redirect('easysurf-home') 
+
+def update_account_info(request):
+    if not (request.user.is_authenticated):
+        return redirect('easysurf-home')
+
+    context = {}
+
+    if request.POST:
+        form = AccountUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AccountUpdateForm (
+            initial = {
+                "email": request.user.email,
+                "username": request.user.username,
+                "home_address": request.user.home_address,
+                "phone_number": request.user.phone_number,
+            }
+        )
+    context['account_form'] = form
+    return render(request, 'account/personal-info.html', context)

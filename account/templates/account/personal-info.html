@@ -15,7 +15,13 @@
 
     <form action="" method="POST">
         {% csrf_token %}
-        <label for="fname">First Name</label>
+        {% for field in account_form %}
+            <p>
+                {{field.label_tag}}
+                {{field}}
+            </p>
+        {% endfor %}
+        <!-- <label for="fname">First Name</label>
         <input type="text" id="fname" name="fname">
 
         <label for="lname">Last Name</label>
@@ -31,7 +37,7 @@
         <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 
         <label for="adress">Home Adress</label>
-        <input type="text" id="adress" name="adress" placeholder="1234 John Street">
+        <input type="text" id="adress" name="adress" placeholder="1234 John Street"> -->
 
         <input type="submit" value="Update">
     </form>
