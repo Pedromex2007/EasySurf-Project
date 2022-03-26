@@ -47,12 +47,10 @@
   </body>
 
   <body>
-    {% for post in responses %}
+    {% for question in questions %}
         <div class="card border-light mb-3" style="max-width: 58rem;">
-            <div class="card-header">{{post.author}}</div>
             <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.content}}</p>
+            <p class="card-text">{{question.content}}</p>
             </div>
         </div>
     {% endfor %}
@@ -60,7 +58,7 @@
 
   {%block content%}
   <form method="POST">{% csrf_token %}
-    {{form.as_p}}
+
     <input type='submit' value='Save'/>
   </form>
   {%endblock%}

@@ -8,5 +8,6 @@ from easysurfQuestionnaire.views import (
 )
 
 urlpatterns = [
-    path('', home, name='surveys-home')
+    path('', home, name='surveys-home'),
+    path('surveylist/<int:pk>/', SurveyDetailView.as_view(), name='survey-surveydetail'),
 ]

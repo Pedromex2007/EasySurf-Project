@@ -31,4 +31,4 @@ def home(request):
     context = {
         'surveys': Survey.objects.all()
     }
-    return render(request, 'theworld/home.html', context)
+    return render(request, 'easysurfQuestionnaire/home.html', context)
