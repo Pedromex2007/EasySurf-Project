@@ -1,59 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
+{% load static %}
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>Dashboard</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Surf</title>
-</head>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
 
-<body>
+    
 
-    <header>
-        <h1>Dashboard</h1>
-    </header>
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'easysurfHome/css/bootstrap.min.css' %}" rel="stylesheet">
 
-    <div>
-        <h3><a href="{% url 'update-info' %}">Update Personal Information</a></h3>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'easysurfHome/navbar-top-fixed.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Bar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <!--<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'update-info' %}">Update Personal Information</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Personal Information</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'surveys-home' %}">Questionnaires</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Orientation Meeting</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Registration Checklist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Fees</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Voting</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Visitors</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Clubs and Committees</a>
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <main class="module-container">
-        <div class="module">
-            <h3>Personal Information</h3>
-        </div>
-        <div class="module">
-            <h3>Questionnaires</h3>
-        </div>
-        <div class="module">
-            <h3>Orientation Meeting</h3>
-        </div>
-        <div class="module">
-            <h3>Registration Checklist</h3>
-        </div>
-        <div class="module">
-            <h3>Fees</h3>
-        </div>
-        <div class="module">
-            <h3>Events</h3>
-        </div>
-        <div class="module">
-            <h3>Voting</h3>
-        </div>
-        <div class="module">
-            <h3>Visitors</h3>
-        </div>
-        <div class="module">
-            <h3>Car Pool and Bus</h3>
-        </div>
-        <div class="module">
-            <h3>Store</h3>
-        </div>
-        <div class="module">
-            <h3>Clubs and Committees</h3>
-        </div>
-    </main>
+<main class="container">
+  <div class="bg-light p-5 rounded">
+    <h1>Dashboard</h1>
+    <p class="lead">Welcome to your dashboard!</p>
+    <a class="btn btn-lg btn-primary" href="../components/navbar/" role="button">View navbar docs &raquo;</a>
+  </div>
+</main>
 
-</body>
 
+    <script src="{% static 'easysurfHome/js/bootstrap.bundle.min.js' %}"></script>
+
+      
+  </body>
 </html>
