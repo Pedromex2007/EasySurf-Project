@@ -51,6 +51,12 @@
         <div class="card border-light mb-3" style="max-width: 58rem;">
             <div class="card-body">
             <p class="card-text">{{question.content}}</p>
+            <input type="radio" id="vyes" name="{{question.id}}" value="Very Yes">
+            <label for="vyes">Very Yes</label><br>
+            <input type="radio" id="yes" name="{{question.id}}" value="Yes">
+            <label for="yes">Yes</label><br>  
+            <input type="radio" id="no" name="{{question.id}}" value="No">
+            <label for="no">No</label><br><br>
             </div>
         </div>
     {% endfor %}
