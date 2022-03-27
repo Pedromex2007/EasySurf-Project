@@ -27,7 +27,11 @@ class Question(models.Model):
 class Answer(models.Model):
     content = models.CharField(max_length=200)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    votes = models.IntegerField(default=0)
     
     def __str__(self):
-        return f"question: {self.question.content}, answer: {self.content}, correct: {self.correct}"
+        return f"question: {self.question.content}, answer: {self.content}"
+        
+    def get_answer_votes(self):
+        return self.votes
     
