@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import random
 
 class Survey(models.Model):
+    '''Base survey model. Will have a name and description to be shown.'''
     name = models.CharField(max_length=50)
     desc = models.CharField(max_length=500)    
     number_of_questions = models.IntegerField(default=1)
@@ -14,6 +15,7 @@ class Survey(models.Model):
         return self.question_set.all()
     
 class Question(models.Model):
+    '''Base question model. Can be assigned to a survey, making it show up under that survey's detail view.'''
     content = models.CharField(max_length=200)
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     
@@ -25,6 +27,7 @@ class Question(models.Model):
     
     
 class Answer(models.Model):
+    '''Answer model. To be attached to a question so questiosn can have dynamic answer choices. Currently not used.'''
     content = models.CharField(max_length=200)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     votes = models.IntegerField(default=0)
