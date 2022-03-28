@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'easysurfHome.apps.EasysurfhomeConfig',
     'account',
     'easysurfQuestionnaire',
+    'easysurfClubs',
 
     #DEFAULT APPS
     'django.contrib.admin',
