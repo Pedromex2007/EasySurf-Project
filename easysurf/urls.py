@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('easysurfHome.urls')),
     path('surveys/', include('easysurfQuestionnaire.urls')),
+    path('clubs/', include('easysurfClubs.urls')),
 ]

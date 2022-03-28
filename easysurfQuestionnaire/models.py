@@ -27,7 +27,7 @@ class Question(models.Model):
     
     
 class Answer(models.Model):
-    '''Answer model. To be attached to a question so questiosn can have dynamic answer choices. Currently not used.'''
+    '''Answer model. To be attached to a question so questions can have dynamic answer choices. Currently not used.'''
     content = models.CharField(max_length=200)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     votes = models.IntegerField(default=0)
