@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 
 
 class ClubListView(ListView):
+    '''Renders all the clubs that have been registered. Users can select a specific club to join.'''
     model = Club
     template_name = 'easysurfClubs/index.html'
     context_object_name = 'clubs'
@@ -27,6 +28,7 @@ class ClubListView(ListView):
         return render(request, self.template_name, context)
 
 class ClubDetailView(DetailView):
+    '''Renders the selected club along with the button to join. Users that are not logged in will be redirected to the home page.'''
     model = Club
 
     def get(self, request, *args, **kwargs):
