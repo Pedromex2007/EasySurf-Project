@@ -36,9 +36,13 @@ class ClubDetailView(DetailView):
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
+        current_user = request.user
+
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
         print("Posting!")
+        current_user.active_club = self.get_object()
+        current_user.save()
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
