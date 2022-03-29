@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 from account.models import Account
@@ -16,12 +17,13 @@ class Issue(models.Model):
         return self.downvotes
 
 class Reply(models.Model):
-    content = models.CharField(max_length=200)
+    content = models.CharField(max_length=500)
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.content
 
 class Voter(models.Model):
-    user = models.ForeignKey(Account)
-    issue = models.ForeignKey(Issue)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
+    has_upvoted = models.BooleanField()

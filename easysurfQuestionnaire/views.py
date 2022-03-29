@@ -1,5 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -8,15 +10,15 @@ from django.views.generic import (
 from .models import Survey, Answer, Question
 from django.http import HttpResponseRedirect
 
-
 class SurveyListView(ListView):
     model = Survey
+    login_url = 'easysurf-home'
     template_name = 'easysurfQuestionnaire/index.html'
     context_object_name = 'surveys'
 
-class SurveyDetailView(DetailView):
+class SurveyDetailView(LoginRequiredMixin,DetailView):
     model = Survey
-
+    login_url = 'easysurf-home'
     def get_context_data(self, **kwargs):
         
 
@@ -26,7 +28,7 @@ class SurveyDetailView(DetailView):
         return ctx
 
 
-# Create your views here.
+@login_required
 def home(request):
     context = {
         'surveys': Survey.objects.all()
