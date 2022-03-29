@@ -7,6 +7,9 @@ import random
 class Issue(models.Model):
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=500)
+
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
 
@@ -16,9 +19,10 @@ class Issue(models.Model):
     def get_downvotes(self):
         return self.downvotes
 
-class Reply(models.Model):
+class IssueReply(models.Model):
     content = models.CharField(max_length=500)
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.content
