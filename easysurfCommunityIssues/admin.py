@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Issue, IssueReply, Voter
 
-# Register your models here.
+admin.site.register(Issue)
+admin.site.register(IssueReply)

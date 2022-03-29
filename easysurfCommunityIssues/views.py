@@ -57,20 +57,24 @@ class IssueDetailView(DetailView):
         return ctx
 
 class IssueCreateView(CreateView):
-    model = Issue
+    '''View to create issue form fields automatically in the desinated template. Users should be logged in to access this page.'''
+    form_class = CreateIssueForm
     template_name = 'easysurfCommunityIssues/create.html'
-    fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return '../../'
+
 
 def create(request):
 
     if(request.method == 'POST'):
         form = CreateIssueForm(request.POST)
         if(form.is_valid()):
-            form.author = request.user
+            form.user = request.user
             form.save()
             return redirect('easysurf-home')
     else:
