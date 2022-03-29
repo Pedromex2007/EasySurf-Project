@@ -1,6 +1,7 @@
 from tkinter.messagebox import YES
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from easysurfClubs.models import Club
 
 
 class MainAccountManager(BaseUserManager):
@@ -57,10 +58,12 @@ class Account(AbstractBaseUser):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    birth_date = models.DateField()
+    birth_date = models.DateField(blank=True, null=True)
     phone_number = models.CharField(max_length=12)
 
     home_address = models.CharField(max_length=40)
+
+    active_club = models.ForeignKey(Club,on_delete=models.SET_NULL, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'birth_date']
