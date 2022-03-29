@@ -37,11 +37,11 @@
       </head>
       <body class="py-4">
   <body>
-    {% for post in posts %}
+    {% for post in issues %}
         <div class="card border-light mb-3" style="max-width: 58rem;">
             <div class="card-header">{{post.author}}</div>
             <div class="card-body">
-            <h5 class="card-title"><a href="{% url 'theworld-postdetail' post.id %}">{{post.title}}</a></h5>
+            <h5 class="card-title"><a href="{% url 'issues-issuedetail' post.id %}">{{post.title}}</a></h5>
             <!-- <p class="card-text">{{post.content}}</p> -->
             </div>
         </div>

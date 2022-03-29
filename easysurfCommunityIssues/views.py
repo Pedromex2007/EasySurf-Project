@@ -13,6 +13,7 @@ from .forms import CreateIssueForm, ReplyIssueForm
 from django.http import HttpResponseRedirect
 
 class IssueListView(ListView):
+    '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
     model = Issue
     template_name = 'easysurfCommunityIssues/index.html'
     context_object_name = 'issues'
@@ -56,7 +57,7 @@ class IssueDetailView(DetailView):
         ctx['form'] = issueReply
         return ctx
 
-class IssueCreateView(CreateView):
+class IssueCreateView(LoginRequiredMixin, CreateView):
     '''View to create issue form fields automatically in the desinated template. Users should be logged in to access this page.'''
     form_class = CreateIssueForm
     template_name = 'easysurfCommunityIssues/create.html'
