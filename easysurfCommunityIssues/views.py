@@ -35,6 +35,8 @@ class IssueDetailView(DetailView):
 
     def vote(self, request, issue_id, upvoted):
         if Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).exists():
+            current_voter = Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).first()
+            print(current_voter.issue)
             print("Already voted.")
         else:
             crntIssue = self.get_object()
@@ -58,18 +60,21 @@ class IssueDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         replyPost = ReplyIssueForm(self.request.POST or None)
+
         if replyPost.is_valid():
             print(self.get_object)
+            #TODO: Fix this so replies actually work.
             replyPost.instance.issue = self.get_object()
+            replyPost.instance.user = request.user
             replyPost.save()
             return HttpResponseRedirect('/')
         else:
             if request.POST.get("upvote_btn"):
-                self.vote(request, 10, True)
+                self.vote(request, self.get_object().pk, True)
                 print("UPVOTE")
                 return HttpResponseRedirect('/')
             elif request.POST.get("downvote_btn"):
-                self.vote(request, 10, False)
+                self.vote(request, self.get_object().pk, False)
                 print("DOWNVOTE")
                 return HttpResponseRedirect('/')
             else:
