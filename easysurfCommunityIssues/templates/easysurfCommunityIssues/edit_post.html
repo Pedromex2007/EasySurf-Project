@@ -37,36 +37,9 @@
       </head>
       <body class="py-4">
   <body>
-    <div class="card border-light mb-3" style="max-width: 58rem;">
-        <div class="card-header">{{object.author}}</div>
-        <div class="card-body">
-        <h5 class="card-title">{{object.title}}</h5>
-        <p class="card-text">{{object.content}}</p>
-        <form method="POST">{% csrf_token %}
-          <button type="submit" name="upvote_btn" value="SaveHome">&nbsp;Upvote</button>
-          <button type="submit" name="downvote_btn" value="SaveNext">&nbsp;Downvote</button>
-        </form>
-        <h5><a href="{% url 'update-issue' object.id %}">Edit</a></h5>
-        </div>
-    </div>
+    <form method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Save">
+    </form>
   </body>
-
-  <body>
-    {% for post in responses %}
-        <div class="card border-light mb-3" style="max-width: 58rem;">
-            <div class="card-header">{{post.author}}</div>
-            <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.content}}</p>
-            </div>
-        </div>
-    {% endfor %}
-  </body>
-
-  {%block content%}
-  <form method="POST">{% csrf_token %}
-    {{form.as_p}}
-    <input type='submit' value='Save'/>
-  </form>
-  {%endblock%}
 </html>

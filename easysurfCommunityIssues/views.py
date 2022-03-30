@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import (
     ListView, 
     DetailView,
-    TemplateView,
+    UpdateView,
     CreateView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,7 +12,7 @@ from .models import Issue, IssueReply, Voter
 from .forms import CreateIssueForm, ReplyIssueForm
 from django.http import HttpResponseRedirect
 
-class IssueListView(ListView):
+class IssueListView(LoginRequiredMixin, ListView):
     '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
     model = Issue
     template_name = 'easysurfCommunityIssues/index.html'
@@ -30,7 +30,7 @@ class IssueListView(ListView):
         print("poo")
         return render(request, self.template_name, context)
 
-class IssueDetailView(DetailView):
+class IssueDetailView(LoginRequiredMixin, DetailView):
     '''View to render a specific issue's replies and upvotes/downvotes. This also controls the logic behind the reply form and the downvote/upvote button.'''
     model = Issue
 
@@ -103,5 +103,20 @@ class IssueCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return '../'
+
+class IssueEditView(LoginRequiredMixin, UpdateView):
+    model = Issue
+    template_name = 'easysurfCommunityIssues/edit_post.html'
+    fields = ['title', 'content']
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if(self.object.user.pk is not request.user.pk):
+            print("Not the user.")
+            return HttpResponseRedirect('../../')
+        return super().get(request, *args, **kwargs)
+    
     def get_success_url(self):
         return '../'
