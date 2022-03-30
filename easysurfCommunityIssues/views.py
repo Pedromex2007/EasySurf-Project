@@ -31,9 +31,12 @@ class IssueListView(ListView):
         return render(request, self.template_name, context)
 
 class IssueDetailView(DetailView):
+    '''View to render a specific issue's replies and upvotes/downvotes. This also controls the logic behind the reply form and the downvote/upvote button.'''
     model = Issue
 
     def vote(self, request, issue_id, upvoted):
+        '''Downvote or upvote a master post. User can switch their vote.'''
+        #TODO: Allow user to switch their vote.
         if Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).exists():
             current_voter = Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).first()
             print(current_voter.issue)
@@ -62,11 +65,10 @@ class IssueDetailView(DetailView):
         replyPost = ReplyIssueForm(self.request.POST or None)
 
         if replyPost.is_valid():
-            print(self.get_object)
-            #TODO: Fix this so replies actually work.
-            replyPost.instance.issue = self.get_object()
-            replyPost.instance.user = request.user
-            replyPost.save()
+
+            reply = IssueReply(content=replyPost.instance.content, user=request.user, issue=self.get_object())
+            reply.save()
+
             return HttpResponseRedirect('/')
         else:
             if request.POST.get("upvote_btn"):
@@ -103,20 +105,3 @@ class IssueCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return '../'
-
-
-def create(request):
-
-    if(request.method == 'POST'):
-        form = CreateIssueForm(request.POST)
-        if(form.is_valid()):
-            form.user = request.user
-            form.save()
-            return redirect('easysurf-home')
-    else:
-        form = CreateIssueForm
-
-    context = {
-        'form': form
-    }
-    return render(request, 'easysurfCommunityIssues/create.html', context)
