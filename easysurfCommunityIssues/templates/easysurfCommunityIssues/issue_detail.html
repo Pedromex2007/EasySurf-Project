@@ -42,6 +42,10 @@
         <div class="card-body">
         <h5 class="card-title">{{object.title}}</h5>
         <p class="card-text">{{object.content}}</p>
+        <form method="POST">{% csrf_token %}
+          <button type="submit" name="upvote_btn" value="SaveHome">&nbsp;Upvote</button>
+          <button type="submit" name="downvote_btn" value="SaveNext">&nbsp;Downvote</button>
+        </form>
         </div>
     </div>
   </body>

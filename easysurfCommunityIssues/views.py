@@ -8,7 +8,7 @@ from django.views.generic import (
     CreateView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Issue, IssueReply
+from .models import Issue, IssueReply, Voter
 from .forms import CreateIssueForm, ReplyIssueForm
 from django.http import HttpResponseRedirect
 
@@ -33,6 +33,23 @@ class IssueListView(ListView):
 class IssueDetailView(DetailView):
     model = Issue
 
+    def vote(self, request, issue_id, upvoted):
+        if Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).exists():
+            print("Already voted.")
+        else:
+            crntIssue = self.get_object()
+
+            if upvoted:
+                crntIssue.upvotes += 1
+            else:
+                crntIssue.downvotes += 1
+
+            crntIssue.save()
+            v = Voter(user=request.user, issue=crntIssue, has_upvoted=upvoted)
+            v.save()
+            print("Object upvoted")
+
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
@@ -46,6 +63,18 @@ class IssueDetailView(DetailView):
             replyPost.instance.issue = self.get_object()
             replyPost.save()
             return HttpResponseRedirect('/')
+        else:
+            if request.POST.get("upvote_btn"):
+                self.vote(request, 10, True)
+                print("UPVOTE")
+                return HttpResponseRedirect('/')
+            elif request.POST.get("downvote_btn"):
+                self.vote(request, 10, False)
+                print("DOWNVOTE")
+                return HttpResponseRedirect('/')
+            else:
+                print("Something went horribly wrong!")
+
 
     def get_context_data(self, **kwargs):
         issueReply = ReplyIssueForm(self.request.POST or None)
@@ -57,6 +86,7 @@ class IssueDetailView(DetailView):
         ctx['form'] = issueReply
         return ctx
 
+
 class IssueCreateView(LoginRequiredMixin, CreateView):
     '''View to create issue form fields automatically in the desinated template. Users should be logged in to access this page.'''
     form_class = CreateIssueForm
@@ -67,7 +97,7 @@ class IssueCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return '../../'
+        return '../'
 
 
 def create(request):
