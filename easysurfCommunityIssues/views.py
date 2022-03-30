@@ -39,13 +39,34 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
     def vote(self, request, issue_id, upvoted):
         '''Downvote or upvote a master post. User can switch their vote.'''
         #TODO: Allow user to switch their vote.
+        crntIssue = self.get_object()
+
         if Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).exists():
             current_voter = Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).first()
+
+            if(current_voter.has_upvoted and upvoted):
+                #Do nothing.
+                pass
+            elif(current_voter.has_upvoted and not upvoted):
+                print("Change to DOWNVOTING")
+                crntIssue.upvotes -= 1
+                crntIssue.downvotes += 1
+                crntIssue.save()
+                current_voter.has_upvoted = False
+                current_voter.save()
+            elif(not current_voter.has_upvoted and upvoted):
+                print("Change to UPVOTE")
+                crntIssue.upvotes += 1
+                crntIssue.downvotes -= 1
+                crntIssue.save()
+                current_voter.has_upvoted = True
+                current_voter.save()
+            else:
+                print("Different conditional")
+
             print(current_voter.issue)
             print("Already voted.")
         else:
-            crntIssue = self.get_object()
-
             if upvoted:
                 crntIssue.upvotes += 1
             else:
