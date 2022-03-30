@@ -10,7 +10,7 @@ from django.views.generic import (
 from .models import Survey, Answer, Question
 from django.http import HttpResponseRedirect
 
-class SurveyListView(ListView):
+class SurveyListView(LoginRequiredMixin, ListView):
     model = Survey
     login_url = 'easysurf-home'
     template_name = 'easysurfQuestionnaire/index.html'

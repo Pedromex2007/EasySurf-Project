@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect
 class IssueListView(LoginRequiredMixin, ListView):
     '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
     model = Issue
+    login_url = 'easysurf-home'
     template_name = 'easysurfCommunityIssues/index.html'
     context_object_name = 'issues'
 
@@ -33,6 +34,7 @@ class IssueListView(LoginRequiredMixin, ListView):
 class IssueDetailView(LoginRequiredMixin, DetailView):
     '''View to render a specific issue's replies and upvotes/downvotes. This also controls the logic behind the reply form and the downvote/upvote button.'''
     model = Issue
+    login_url = 'easysurf-home'
 
     def vote(self, request, issue_id, upvoted):
         '''Downvote or upvote a master post. User can switch their vote.'''
@@ -97,6 +99,7 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
 class IssueCreateView(LoginRequiredMixin, CreateView):
     '''View to create issue form fields automatically in the desinated template. Users should be logged in to access this page.'''
     form_class = CreateIssueForm
+    login_url = 'easysurf-home'
     template_name = 'easysurfCommunityIssues/create.html'
 
     def form_valid(self, form):
@@ -108,6 +111,7 @@ class IssueCreateView(LoginRequiredMixin, CreateView):
 
 class IssueEditView(LoginRequiredMixin, UpdateView):
     model = Issue
+    login_url = 'easysurf-home'
     template_name = 'easysurfCommunityIssues/edit_post.html'
     fields = ['title', 'content']
 
