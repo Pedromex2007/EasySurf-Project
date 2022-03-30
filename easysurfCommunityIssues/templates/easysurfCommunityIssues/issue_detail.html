@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.88.1">
+        <title>Test</title>
+    
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/grid/">
+    
+        
+    
+        <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+    
+        
+        <!-- Custom styles for this template -->
+        <link href="grid.css" rel="stylesheet">
+      </head>
+      <body class="py-4">
+  <body>
+    <div class="card border-light mb-3" style="max-width: 58rem;">
+        <div class="card-header">{{object.author}}</div>
+        <div class="card-body">
+        <h5 class="card-title">{{object.title}}</h5>
+        <p class="card-text">{{object.content}}</p>
+        <form method="POST">{% csrf_token %}
+          <button type="submit" name="upvote_btn" value="SaveHome">&nbsp;Upvote</button>
+          <button type="submit" name="downvote_btn" value="SaveNext">&nbsp;Downvote</button>
+        </form>
+        <h5><a href="{% url 'update-issue' object.id %}">Edit</a></h5>
+        </div>
+    </div>
+  </body>
+
+  <body>
+    {% for post in responses %}
+        <div class="card border-light mb-3" style="max-width: 58rem;">
+            <div class="card-header">{{post.author}}</div>
+            <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+            <p class="card-text">{{post.content}}</p>
+            </div>
+        </div>
+    {% endfor %}
+  </body>
+
+  {%block content%}
+  <form method="POST">{% csrf_token %}
+    {{form.as_p}}
+    <input type='submit' value='Save'/>
+  </form>
+  {%endblock%}
+</html>

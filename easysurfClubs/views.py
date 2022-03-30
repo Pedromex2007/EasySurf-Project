@@ -4,14 +4,17 @@ from django.views.generic import (
     ListView, 
     DetailView,
 )
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Club
 from django.http import HttpResponseRedirect
 
 
-class ClubListView(ListView):
+class ClubListView(LoginRequiredMixin, ListView):
     '''Renders all the clubs that have been registered. Users can select a specific club to join.'''
     model = Club
+
+    login_url = 'easysurf-home'
+
     template_name = 'easysurfClubs/index.html'
     context_object_name = 'clubs'
 
@@ -27,22 +30,24 @@ class ClubListView(ListView):
         print("poo")
         return render(request, self.template_name, context)
 
-class ClubDetailView(DetailView):
+class ClubDetailView(LoginRequiredMixin, DetailView):
     '''Renders the selected club along with the button to join. Users that are not logged in will be redirected to the home page.'''
     model = Club
+    login_url = 'easysurf-home'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        print("Getting!")
+
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
+        '''Override default POST function. Sets the active club for a user when they press the button.'''
         current_user = request.user
 
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        print("Posting!")
+
         current_user.active_club = self.get_object()
         current_user.save()
         return self.render_to_response(context)
