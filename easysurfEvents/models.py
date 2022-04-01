@@ -11,5 +11,5 @@ class Event(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     event_date = models.DateTimeField(default=NULL, blank=True, null=True)
 
-    poster = models.ForeignKey(Account, on_delete=models.CASCADE)
-    subscribers = models.ManyToManyField(Account)
+    poster = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="event_op")
+    subscribers = models.ManyToManyField(Account, related_name="event_subbers")
