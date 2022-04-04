@@ -24,4 +24,5 @@ urlpatterns = [
     path('surveys/', include('easysurfQuestionnaire.urls')),
     path('clubs/', include('easysurfClubs.urls')),
     path('issues/', include('easysurfCommunityIssues.urls')),
+    path('events/', include('easysurfEvents.urls')),
 ]
