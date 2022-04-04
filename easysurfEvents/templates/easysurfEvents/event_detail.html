@@ -37,15 +37,16 @@
       </head>
       <body class="py-4">
   <body>
-    {% for post in events %}
-        <div class="card border-light mb-3" style="max-width: 58rem;">
-            <div class="card-header">{{post.title}}</div>
-            <div class="card-body">
-            <h5 class="card-title">{{post.content}}</h5>
-            <p class="card-text">{{post.event_date}}</p>
-            <h5 class="card-title"><a href="{% url 'event-eventdetail' post.id %}">View Event</a></h5>
-            </div>
+    <div class="card border-light mb-3" style="max-width: 58rem;">
+        <div class="card-header">{{object.author}}</div>
+        <div class="card-body">
+        <h5 class="card-title">{{object.title}}</h5>
+        <p class="card-text">{{object.content}}</p>
+        <form method="POST">{% csrf_token %}
+          <button type="submit" name="event_sub" value="SaveHome">&nbsp;Subscribe</button>
+        </form>
         </div>
-    {% endfor %}
+    </div>
   </body>
+
 </html>
