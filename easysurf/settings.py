@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'easysurfClubs',
     'easysurfCommunityIssues',
     'easysurfEvents',
+    'easysurfFees',
 
     #DEFAULT APPS
     'django.contrib.admin',
