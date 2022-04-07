@@ -27,16 +27,6 @@ def login_view(request):
     return render(request, 'account/login.html', context)
 
 
-def undefneind_method(request):
-    if(request.user.is_authenticated):
-        context = {}
-        if request.method == "POST":
-            fname = request.POST.get("fname")
-            print(fname)
-        return render(request, "account/personal-info.html", context=context)
-    else:
-        return redirect('easysurf-home') 
-
 def update_account_info(request):
     if not (request.user.is_authenticated):
         return redirect('easysurf-home')
