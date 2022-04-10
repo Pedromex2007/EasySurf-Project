@@ -1,4 +1,28 @@
 body {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
+}
+
+.Ebanner {
+    background-color: #0c57b3;
+}
+
+a:link {
+    color: white;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+}
+
+/* mouse over link */
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: white;
 }
