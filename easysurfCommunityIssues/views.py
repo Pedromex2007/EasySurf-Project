@@ -89,16 +89,16 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
             reply = IssueReply(content=replyPost.instance.content, user=request.user, issue=self.get_object())
             reply.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(self.request.path_info)
         else:
             if request.POST.get("upvote_btn"):
                 self.vote(request, self.get_object().pk, True)
                 print("UPVOTE")
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(self.request.path_info)
             elif request.POST.get("downvote_btn"):
                 self.vote(request, self.get_object().pk, False)
                 print("DOWNVOTE")
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(self.request.path_info)
             else:
                 print("Something went horribly wrong!")
 

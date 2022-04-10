@@ -19,6 +19,10 @@ class SurveyListView(LoginRequiredMixin, ListView):
 class SurveyDetailView(LoginRequiredMixin,DetailView):
     model = Survey
     login_url = 'login'
+
+    def post(self, request, *args, **kwargs):
+        return HttpResponseRedirect('../')
+
     def get_context_data(self, **kwargs):
         
 
