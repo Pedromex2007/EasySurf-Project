@@ -7,22 +7,49 @@ body {
     background-color: #0c57b3;
 }
 
-a:link {
+a.banner-link {
+    color: white;
+}
+
+a.banner-link:link {
     color: white;
 }
 
 /* visited link */
-a:visited {
+a.banner-link:visited {
     color: white;
 }
 
 /* mouse over link */
-a:hover {
+a.banner-link:hover {
     color: white;
     text-decoration: none;
 }
 
 /* selected link */
-a:active {
+a.banner-link:active {
     color: white;
+}
+
+a.dash-mod {
+    color: black;
+}
+
+a.dash-mod:link {
+    color: black;
+}
+
+/* visited link */
+a.dash-mod:visited {
+    color: black;
+}
+
+/* mouse over link */
+a.dash-mod:hover {
+    color: black;
+}
+
+/* selected link */
+a.dash-mod:active {
+    color: black;
 }
