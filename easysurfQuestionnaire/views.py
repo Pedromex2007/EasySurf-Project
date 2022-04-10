@@ -12,13 +12,13 @@ from django.http import HttpResponseRedirect
 
 class SurveyListView(LoginRequiredMixin, ListView):
     model = Survey
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfQuestionnaire/index.html'
     context_object_name = 'surveys'
 
 class SurveyDetailView(LoginRequiredMixin,DetailView):
     model = Survey
-    login_url = 'easysurf-home'
+    login_url = 'login'
     def get_context_data(self, **kwargs):
         
 

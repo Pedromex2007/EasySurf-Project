@@ -13,7 +13,7 @@ from django.http import HttpResponseRedirect
 class EventListView(LoginRequiredMixin, ListView):
     '''This view lists out all the active events.'''
     model = Event
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfEvents/index.html'
     context_object_name = 'events'
 
@@ -32,7 +32,7 @@ class EventListView(LoginRequiredMixin, ListView):
 class EventDetailView(LoginRequiredMixin, DetailView):
     '''View to render an event's details.'''
     model = Event
-    login_url = 'easysurf-home'
+    login_url = 'login'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

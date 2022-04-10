@@ -15,7 +15,7 @@ from django.http import HttpResponseRedirect
 class IssueListView(LoginRequiredMixin, ListView):
     '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
     model = Issue
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfCommunityIssues/index.html'
     context_object_name = 'issues'
 
@@ -34,7 +34,7 @@ class IssueListView(LoginRequiredMixin, ListView):
 class IssueDetailView(LoginRequiredMixin, DetailView):
     '''View to render a specific issue's replies and upvotes/downvotes. This also controls the logic behind the reply form and the downvote/upvote button.'''
     model = Issue
-    login_url = 'easysurf-home'
+    login_url = 'login'
 
     def vote(self, request, issue_id, upvoted):
         '''Downvote or upvote a master post. User can switch their vote.'''
