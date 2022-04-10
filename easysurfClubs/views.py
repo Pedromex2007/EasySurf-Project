@@ -21,13 +21,11 @@ class ClubListView(LoginRequiredMixin, ListView):
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        print("loo")
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        print("poo")
         return render(request, self.template_name, context)
 
 class ClubDetailView(LoginRequiredMixin, DetailView):

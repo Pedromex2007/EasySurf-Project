@@ -22,13 +22,11 @@ class IssueListView(LoginRequiredMixin, ListView):
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        print("loo")
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        print("poo")
         return render(request, self.template_name, context)
 
 class IssueDetailView(LoginRequiredMixin, DetailView):
@@ -81,7 +79,6 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        print("Getting!")
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
