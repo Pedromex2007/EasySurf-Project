@@ -13,3 +13,6 @@ class Invoice(models.Model):
     
     balance = models.FloatField(default=0.00)
     paid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title

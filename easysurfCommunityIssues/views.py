@@ -15,26 +15,24 @@ from django.http import HttpResponseRedirect
 class IssueListView(LoginRequiredMixin, ListView):
     '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
     model = Issue
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfCommunityIssues/index.html'
     context_object_name = 'issues'
 
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        print("loo")
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        print("poo")
         return render(request, self.template_name, context)
 
 class IssueDetailView(LoginRequiredMixin, DetailView):
     '''View to render a specific issue's replies and upvotes/downvotes. This also controls the logic behind the reply form and the downvote/upvote button.'''
     model = Issue
-    login_url = 'easysurf-home'
+    login_url = 'login'
 
     def vote(self, request, issue_id, upvoted):
         '''Downvote or upvote a master post. User can switch their vote.'''
@@ -81,7 +79,6 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        print("Getting!")
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
@@ -92,16 +89,16 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
             reply = IssueReply(content=replyPost.instance.content, user=request.user, issue=self.get_object())
             reply.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(self.request.path_info)
         else:
             if request.POST.get("upvote_btn"):
                 self.vote(request, self.get_object().pk, True)
                 print("UPVOTE")
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(self.request.path_info)
             elif request.POST.get("downvote_btn"):
                 self.vote(request, self.get_object().pk, False)
                 print("DOWNVOTE")
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(self.request.path_info)
             else:
                 print("Something went horribly wrong!")
 

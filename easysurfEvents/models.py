@@ -13,3 +13,6 @@ class Event(models.Model):
 
     poster = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="event_op")
     subscribers = models.ManyToManyField(Account, blank=True, related_name="event_subbers")
+
+    def __str__(self):
+        return self.title
