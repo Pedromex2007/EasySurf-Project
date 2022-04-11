@@ -19,11 +19,16 @@ class SurveyListView(LoginRequiredMixin, ListView):
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
+
+        adjusted_surveys = Survey.objects.exclude(surveyees = request.user).count()
+        print("COUNT" + str(adjusted_surveys))
+
         return render(request, self.template_name, context)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, request, **kwargs):
         
-
+        adjusted_surveys = Survey.objects.exclude(surveyees = request.user).count
+        print(adjusted_surveys)
         ctx = super(SurveyDetailView, self).get_context_data(**kwargs)
 
 
@@ -76,6 +81,6 @@ class SurveyDetailView(LoginRequiredMixin, DetailView):
 @login_required
 def home(request):
     context = {
-        'surveys': Survey.objects.all()
+        'surveys': Survey.objects.exclude(surveyees = request.user)
     }
     return render(request, 'easysurfQuestionnaire/home.html', context)
