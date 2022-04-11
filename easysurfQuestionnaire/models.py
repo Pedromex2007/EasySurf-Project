@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from account.models import Account
-import random
 
 class Survey(models.Model):
     '''Base survey model. Will have a name and description to be shown.'''

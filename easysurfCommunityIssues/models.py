@@ -1,9 +1,7 @@
-from xmlrpc.client import TRANSPORT_ERROR
 from django.db import models
 from django.contrib.auth.models import User
 from account.models import Account
 from django.utils import timezone
-import random
 
 class Issue(models.Model):
     title = models.CharField(max_length=50)
