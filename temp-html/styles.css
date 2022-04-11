@@ -53,3 +53,12 @@ a.dash-mod:hover {
 a.dash-mod:active {
     color: black;
 }
+
+.carousel-inner {
+    border-top: 10px;
+    border-left: 10px;
+    border-right: 10px;
+    border-bottom: 00px;
+    border-color: #0c57b3;
+    border-style: solid;
+}
