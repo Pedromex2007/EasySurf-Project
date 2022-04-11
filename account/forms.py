@@ -32,7 +32,28 @@ class AccountAuthenticationForm(forms.ModelForm):
 class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ('email', 'username', 'phone_number', 'home_address')
+        fields = ('first_name', 'last_name', 'email', 'username', 'phone_number', 'home_address')
+# <input type="text" class="form-control" id="validationCustom02" placeholder="{{field.label_tag}}" value="{{field.label_tag}}"
+        widgets = {
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control'
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
+            'email': forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
+            'username': forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
+            'phone_number': forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
+            'home_address': forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
+        }
 
     def clean_email(self):
         if(self.is_valid()):

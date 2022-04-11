@@ -47,4 +47,4 @@ def update_account_info(request):
             }
         )
     context['account_form'] = form
-    return render(request, 'account/personal-info.html', context)
+    return render(request, 'account/personal-info-stylized.html', context)
