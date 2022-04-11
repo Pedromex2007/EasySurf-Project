@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from xmlrpc.client import TRANSPORT_ERROR
 from django.db import models
 from django.contrib.auth.models import User

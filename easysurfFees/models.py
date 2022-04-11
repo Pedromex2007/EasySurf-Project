@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from django.db import models
 from django.contrib.auth.models import User
 from account.models import Account
@@ -9,7 +8,7 @@ class Invoice(models.Model):
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=500)
     date_generated = models.DateTimeField(default=timezone.now)
-    date_due = models.DateTimeField(default=NULL, blank=True, null=True)
+    date_due = models.DateTimeField(default=None, blank=True, null=True)
     
     balance = models.FloatField(default=0.00)
     paid = models.BooleanField(default=False)
