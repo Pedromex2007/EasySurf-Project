@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import (
     ListView, 

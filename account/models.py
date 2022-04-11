@@ -1,4 +1,3 @@
-from tkinter.messagebox import YES
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from easysurfClubs.models import Club
