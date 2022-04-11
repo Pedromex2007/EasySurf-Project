@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from account.models import Account
 import random
 
 class Survey(models.Model):
@@ -7,6 +8,8 @@ class Survey(models.Model):
     name = models.CharField(max_length=50)
     desc = models.CharField(max_length=500)    
     number_of_questions = models.IntegerField(default=1)
+
+    surveyees = models.ManyToManyField(Account, blank=True)
     
     def __str__(self):
         return self.name
@@ -37,4 +40,8 @@ class Answer(models.Model):
         
     def get_answer_votes(self):
         return self.votes
+
+#class Surveyee(models.Model):
+#    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+#    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     

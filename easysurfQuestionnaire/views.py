@@ -14,13 +14,54 @@ class SurveyListView(LoginRequiredMixin, ListView):
     model = Survey
     login_url = 'login'
     template_name = 'easysurfQuestionnaire/index.html'
-    context_object_name = 'surveys'
+    #context_object_name = 'surveys'
 
-class SurveyDetailView(LoginRequiredMixin,DetailView):
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        context = self.get_context_data()
+        return render(request, self.template_name, context)
+
+    def get_context_data(self, **kwargs):
+        
+
+        ctx = super(SurveyDetailView, self).get_context_data(**kwargs)
+
+
+
+        ctx['surveys'] = Question.objects.all().filter(survey = self.get_object())
+ 
+        return ctx
+
+class SurveyDetailView(LoginRequiredMixin, DetailView):
     model = Survey
     login_url = 'login'
 
+
+    def get(self, request, *args, **kwargs):
+        #if Surveyee.objects.filter(survey_id=self.get_object().pk, user_id=request.user.id).exists():
+        #    return HttpResponseRedirect('../')
+
+        if request.user in self.get_object().surveyees.all():
+            return HttpResponseRedirect('../')
+
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
     def post(self, request, *args, **kwargs):
+
+        current_user = request.user
+
+        self.object = self.get_object()
+
+        crnt_survey = self.object
+        crnt_survey.surveyees.add(current_user)
+        crnt_survey.save()
+
+        #crntSurvey = self.get_object()
+        #v = Surveyee(user=request.user, survey=crntSurvey)
+        #v.save()
+
         return HttpResponseRedirect('../')
 
     def get_context_data(self, **kwargs):

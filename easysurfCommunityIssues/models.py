@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from xmlrpc.client import TRANSPORT_ERROR
 from django.db import models
 from django.contrib.auth.models import User
 from account.models import Account
@@ -10,7 +12,10 @@ class Issue(models.Model):
 
     date_posted = models.DateTimeField(default=timezone.now)
 
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="original_poster")
+
+    assignee = models.ForeignKey(Account, on_delete=models.CASCADE, blank=True, null=True, related_name="issue_resolver")
+    resolved = models.BooleanField(default=False)
 
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
