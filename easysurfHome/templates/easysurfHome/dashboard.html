@@ -1,100 +1,257 @@
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="generator" content="">
-    <title>Dashboard</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="{% static 'easysurfHome/styles.css' %}" rel="stylesheet">
+    <title>Easy Surf</title>
+</head>
 
-    
+<body style="overflow-x:hidden;">
+    <header class="row no-gutters">
+        <div class="col d-flex Ebanner text-light ">
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="dashboard.html" class="banner-link">Easy
+                    Surf</a></h1>
+            <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
+        </div>
+        <div class="col Ebanner text-right">
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+        </div>
+    </header>
 
-    <!-- Bootstrap core CSS -->
-<link href="{% static 'easysurfHome/css/bootstrap.min.css' %}" rel="stylesheet">
+    <header class="container-fluid text-center py-4">
+        <h1 class="display-3">Dashboard</h1>
+    </header>
+    <div class="row mb-4">
+        <div class="col">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+            <a href="{% url 'update-info' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Information</h5>
+                        <p class="card-text">
+                            <i class="bi bi-person-lines-fill" style="font-size: 3rem"></i>
+                        </p>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="{% static 'easysurfHome/navbar-top-fixed.css' %}" rel="stylesheet">
-  </head>
-  <body>
-    
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Bar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <!--<li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-        </li>-->
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'update-info' %}">Update Personal Information</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Personal Information</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'surveys-home' %}">Questionnaires</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Orientation Meeting</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Registration Checklist</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Fees</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Voting</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Visitors</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Clubs and Committees</a>
-        </li>
-      </ul>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <a href="{% url 'surveys-home' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Questionnaires</h5>
+                        <p class="card-text">
+                            <i class="bi bi-ui-radios-grid" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <a href="{% url 'home-orientation' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Orientation Meeting</h5>
+                        <p class="card-text">
+                            <i class="bi bi-info-circle-fill" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
     </div>
-  </div>
-</nav>
 
-<main class="container">
-  <div class="bg-light p-5 rounded">
-    <h1>Dashboard</h1>
-    <p class="lead">Welcome to your dashboard!</p>
-    <a class="btn btn-lg btn-primary" href="../components/navbar/" role="button">View navbar docs &raquo;</a>
-  </div>
-</main>
+    <div class="row mb-4">
+        <div class="col">
 
+            <a href="{% url 'home-checklist' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
 
-    <script src="{% static 'easysurfHome/js/bootstrap.bundle.min.js' %}"></script>
+                    <div class="card-body">
+                        <h5 class="card-title">Registration Checklist</h5>
+                        <p class="card-text">
+                            <i class="bi bi-ui-checks" style="font-size: 3rem"></i>
+                        </p>
 
-      
-  </body>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <a href="{% url 'surveys-home' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Fees</h5>
+                        <p class="card-text">
+                            <i class="bi bi-cash-stack" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <a href="{% url 'event-list' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Events</h5>
+                        <p class="card-text">
+                            <i class="bi bi-calendar-event-fill" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+            <a href="{% url 'issues-list' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Voting</h5>
+                        <p class="card-text">
+                            <i class="bi bi-ui-radios" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <a href="{% url 'clubs-home' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Visitors</h5>
+                        <p class="card-text">
+                            <i class="bi bi-person-square" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <a href="{% url 'clubs-home' %}" class="dash-mod">
+                <div class="card text-center mx-auto" style="-webkit-box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); 
+            box-shadow: 3px 4px 19px -1px rgba(0,0,0,0.69); width:80%;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Clubs and Committees</h5>
+                        <p class="card-text">
+                            <i class="bi bi-geo-fill" style="font-size: 3rem"></i>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+
+    <div>
+        <h3>Update Personal Information</h3>
+    </div>
+
+    <main class="module-container">
+        <div class="module">
+            <h3>Personal Information</h3>
+        </div>
+        <div class="module">
+            <h3>Questionnaires</h3>
+        </div>
+        <div class="module">
+            <h3>Orientation Meeting</h3>
+        </div>
+        <div class="module">
+            <h3>Registration Checklist</h3>
+        </div>
+        <div class="module">
+            <h3>Fees</h3>
+        </div>
+        <div class="module">
+            <h3>Events</h3>
+        </div>
+        <div class="module">
+            <h3>Voting</h3>
+        </div>
+        <div class="module">
+            <h3>Visitors</h3>
+        </div>
+        <div class="module">
+            <h3>Car Pool and Bus</h3>
+        </div>
+        <div class="module">
+            <h3>Store</h3>
+        </div>
+        <div class="module">
+            <h3>Clubs and Committees</h3>
+        </div>
+    -->
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
