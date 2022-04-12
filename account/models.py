@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from easysurfClubs.models import Club
+from easysurfHome.models import ResidentChecklist
 
 
 class MainAccountManager(BaseUserManager):
@@ -26,6 +27,10 @@ class MainAccountManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
+
+        user_checklist = ResidentChecklist(resident = user)
+        user_checklist.save()
+
         return user
 
     def create_superuser(self, email, username, first_name, last_name, birth_date, password=None):

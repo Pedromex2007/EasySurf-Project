@@ -17,3 +17,8 @@ class ResidentChecklist(models.Model):
     orientation = models.BooleanField(default=False)
     completed_survey = models.BooleanField(default=False)
     joined_club = models.BooleanField(default=False)
+    voted_issue = models.BooleanField(default=False)
+
+class OrientationResidentDate(models.Model):
+    resident = models.ForeignKey(Account, on_delete=models.CASCADE)
+    orientation_date = models.DateTimeField(default=None, blank=True, null=True)
