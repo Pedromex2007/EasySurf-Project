@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from account.forms import AccountAuthenticationForm, AccountUpdateForm
+from .models import ResidentChecklist
 
 def logout_view(request):
     logout(request)
@@ -36,6 +37,10 @@ def update_account_info(request):
     if request.POST:
         form = AccountUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
+            if ResidentChecklist.objects.filter(resident_id=request.user.id).exists():
+                current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
+                current_resident.confirmed_personal_info = True
+                current_resident.save()
             form.save()
     else:
         form = AccountUpdateForm (

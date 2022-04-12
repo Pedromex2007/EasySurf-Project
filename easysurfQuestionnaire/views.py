@@ -8,6 +8,7 @@ from django.views.generic import (
 
 from .models import Survey, Answer, Question
 from django.http import HttpResponseRedirect
+from account.models import ResidentChecklist
 
 class SurveyListView(LoginRequiredMixin, ListView):
     model = Survey
@@ -61,6 +62,11 @@ class SurveyDetailView(LoginRequiredMixin, DetailView):
         crnt_survey = self.object
         crnt_survey.surveyees.add(current_user)
         crnt_survey.save()
+
+        if ResidentChecklist.objects.filter(resident_id=request.user.id).exists():
+            current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
+            current_resident.completed_survey = True
+            current_resident.save()
 
         #crntSurvey = self.get_object()
         #v = Surveyee(user=request.user, survey=crntSurvey)

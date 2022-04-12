@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Issue, IssueReply, Voter
 from .forms import CreateIssueForm, ReplyIssueForm
 from django.http import HttpResponseRedirect
+from account.models import ResidentChecklist
 
 class IssueListView(LoginRequiredMixin, ListView):
     '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
@@ -34,7 +35,12 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
 
     def vote(self, request, issue_id, upvoted):
         '''Downvote or upvote a master post. User can switch their vote.'''
-        #TODO: Allow user to switch their vote.
+
+        if ResidentChecklist.objects.filter(resident_id=request.user.id).exists():
+            current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
+            current_resident.voted_issue = True
+            current_resident.save()
+
         crntIssue = self.get_object()
 
         if Voter.objects.filter(issue_id=issue_id, user_id=request.user.id).exists():
