@@ -9,3 +9,11 @@ class Visitor(models.Model):
     phone_number = models.CharField(max_length=12)
 
     resident = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+class ResidentChecklist(models.Model):
+    resident = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    confirmed_personal_info = models.BooleanField(default=False)
+    orientation = models.BooleanField(default=False)
+    completed_survey = models.BooleanField(default=False)
+    joined_club = models.BooleanField(default=False)
