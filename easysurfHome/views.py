@@ -2,12 +2,13 @@ from re import template
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import (
     TemplateView
 )
 
 from account.models import ResidentChecklist
+from .models import OrientationResidentDate
 
 class HomePageView(TemplateView):
     template_name = 'easysurfHome/home.html'
@@ -42,7 +43,44 @@ class ChecklistView(LoginRequiredMixin, TemplateView):
 
         return self.render_to_response(context)
 
-    #def get_context_data(self, **kwargs):
-    #    context = super(ChecklistView, self).get_context_data(**kwargs)
-    #    context.update({'var1': self.var1, 'var2': self.var2})
-    #    return context
+class OrientationView(LoginRequiredMixin, TemplateView):
+    login_url = 'easysurf-home'
+    template_name = 'easysurfHome/orientation-meeting.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+
+        context['submitted_orientation_date'] = False
+
+        if OrientationResidentDate.objects.filter(resident_id=request.user.id).exists():
+            current_resident = OrientationResidentDate.objects.filter(resident_id=request.user.id).first()
+            context['selected_date'] = current_resident.orientation_date
+            context['submitted_orientation_date'] = True
+
+
+        return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get("orientation-date"):
+
+            if ResidentChecklist.objects.filter(resident_id=request.user.id).exists():
+                resident_checklist = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
+                resident_checklist.orientation = True
+                resident_checklist.save()
+                
+            thedate = request.POST.get("orientation-date")
+
+            if OrientationResidentDate.objects.filter(resident_id=request.user.id).exists():
+                current_resident = OrientationResidentDate.objects.filter(resident_id=request.user.id).first()
+                current_resident.orientation_date = thedate
+                current_resident.save()
+            else:
+                print("Creating new orientation date")
+                new_orientation = OrientationResidentDate(resident = request.user, orientation_date = thedate)
+                new_orientation.save()
+            return HttpResponseRedirect(self.request.path_info)
+
+        else:
+            print("Gotta select a date!")
+            #TODO: Raise an error and print to screen, but actually that's pretty hard and we ain't got time so nevermind.
+            return HttpResponseRedirect(self.request.path_info)
