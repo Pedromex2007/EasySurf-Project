@@ -62,3 +62,11 @@ a.dash-mod:active {
     border-color: #0c57b3;
     border-style: solid;
 }
+
+.checklist-icon {
+    font-size: 2rem;
+}
+
+.checklist-text {
+    font-size: 1.5rem;
+}
