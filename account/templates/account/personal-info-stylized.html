@@ -17,98 +17,39 @@
 <body style="overflow:hidden;">
     <header class="row no-gutters">
         <div class="col d-flex Ebanner text-light ">
-            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="dashboard.html" class="banner-link">Easy
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
                     Surf</a></h1>
             <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
         </div>
         <div class="col Ebanner text-right">
-            <h5 class="m-3"><a href="#" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
         </div>
     </header>
-    <div class="row text-center">
-        <h1 class="display-4">Personal Information</h1>
+    <div class="row p-4">
+        <div class="col">
+            <div class="row text-center">
+                <div class="col">
+                    <h1 class="display-4 text-center">Personal Information</h1>
+                </div>
+            </div>
+
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    {% csrf_token %}
+                    {% for field in account_form %}
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom02">{{field.label_tag}}</label>
+                            {{field}}
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="btn btn-primary" type="submit">Confirm</button>
+            </form>
+        </div>
     </div>
-
-    <form action="" method="POST">
-        <div class="form-row">
-            {% csrf_token %}
-            {% for field in account_form %}
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustom02">{{field.label_tag}}</label>
-                    {{field}}
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-            {% endfor %}
-            
-            <!-- <div class="col-md-4 mb-3">
-                <label for="validationCustom01">First name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark"
-                    required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="validationCustom02">Last name</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto"
-                    required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="validationCustomUsername">Username</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                    </div>
-                    <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username"
-                        aria-describedby="inputGroupPrepend" required>
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
-                </div>
-            </div> -->
-        </div>
-        <!--<div class="form-row">
-            <div class="col-md-6 mb-3">
-                <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-                <div class="invalid-feedback">
-                    Please provide a valid state.
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationCustom05">Zip</label>
-                <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div>
-        </div>-->
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
-                </label>
-                <div class="invalid-feedback">
-                    You must agree before submitting.
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
-    </form>
-
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {

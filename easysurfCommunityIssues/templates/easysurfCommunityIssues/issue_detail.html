@@ -35,6 +35,8 @@
               <button type="submit" name="upvote_btn" value="SaveHome">&nbsp;Upvote</button>
               <button type="submit" name="downvote_btn" value="SaveNext">&nbsp;Downvote</button>
             </form>
+            <br>
+            <h6 class="card-subtitle mb-2 text-muted">{{object.upvotes}} Upvote(s) | {{object.downvotes}} Downvote(s)</h6>
           </div>
         </div>
         {% for post in responses %}
