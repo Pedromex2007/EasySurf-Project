@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Easy Surf</title>
+</head>
+
+<body style="overflow:hidden;">
+    <header class="row no-gutters">
+        <div class="col d-flex Ebanner text-light ">
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="dashboard.html" class="banner-link">Easy
+                    Surf</a></h1>
+            <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
+        </div>
+        <div class="col Ebanner text-right">
+            <h5 class="m-3"><a href="index.html" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-2 bg-primary text-light" style="min-height:100%; height:100vh;">
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item bg-primary"><a href="dashboard.html"><i
+                            class="bi bi-house-door-fill text-white" style="font-size: 30px"></i></a>
+                </li>
+                <li class="list-group-item bg-primary"><a href="personal-info.html" class="text-white">Personal
+                        Information</a>
+                </li>
+                <li class="list-group-item bg-primary"><a href="orientation-meeting.html" class="text-white"
+                        style="display:block;">Orientation
+                        Meeting</a></li>
+                <li class="list-group-item list-group-item-action bg-primary"><a href="registration-checklist.html"
+                        class="text-white">Registration
+                        Checklist</a></li>
+                <li class="list-group-item bg-primary"><a href="#" class="text-white">Community Fees</a></li>
+                <li class="list-group-item bg-dark"><a href="questionnaire.html" class="text-white">Questionnaire</a>
+                </li>
+                <li class="list-group-item bg-primary"><a href="#" class="text-white">Events</a></li>
+                <li class="list-group-item bg-primary"><a href="#" class="text-white">Voting</a></li>
+                <li class="list-group-item bg-primary"><a href="#" class="text-white">Visitor Information</a></li>
+                <li class="list-group-item bg-primary"><a href="#" class="text-white">Clubs and Committees</a></li>
+            </ul>
+        </div>
+
+        <div class="col-10">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 class="display-4">Community Fees</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col p-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Status</th>
+                                <th scope="col">Fees</th>
+                                <th scope="col">Pay Here</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for invoice in invoices %}
+                            <tr>
+                                {% if invoice.paid %}
+                                    <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                {% else %}
+                                    <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                {% endif %}
+                                <td class="checklist-text">{{invoice.title}}</td>
+                                <td>
+                                    <form method="POST">{% csrf_token %}
+                                        <button type="button" name="{{invoice.id}}" class="btn btn-lg btn-primary">Pay</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            <!-- <tr>
+                                <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                <td class="checklist-text">Community Initial Deposit</td>
+                                <td><a href="#"><button type="button" class="btn btn-lg btn-secondary"
+                                            disabled>Pay</button></a></td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                <td class="checklist-text">Quarterly Maintenance</td>
+                                <td><a href="#"><button type="button" class="btn btn-lg btn-primary">Pay</button></a>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
