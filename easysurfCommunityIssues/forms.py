@@ -9,7 +9,7 @@ class CreateIssueForm(ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'content': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
 class ReplyIssueForm(ModelForm):
@@ -18,5 +18,5 @@ class ReplyIssueForm(ModelForm):
         fields = ['content']
 
         widgets = {
-            'content': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
         }
