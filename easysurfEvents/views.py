@@ -54,8 +54,7 @@ class EventDetailView(LoginRequiredMixin, DetailView):
         crnt_event.subscribers.add(current_user)
         crnt_event.save()
 
-        if request.POST.get("event_sub"):
-            return HttpResponseRedirect('../')
+        return HttpResponseRedirect('../')
 
     def get_context_data(self, **kwargs):    
         ctx = super(EventDetailView, self).get_context_data(**kwargs)
