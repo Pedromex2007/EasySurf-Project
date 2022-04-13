@@ -45,17 +45,13 @@
           </div>
         </div>
         {% endfor %}
-        <div class="card" style="width: 50rem;">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
   
         {%block content%}
         <form method="POST">{% csrf_token %}
-          {{form.as_p}}
-          <input type='submit' value='Post'/>
+          <div class="col-6 mb-3">
+            {{form.as_p}}
+          </div>
+          <input type='submit' value='Reply'/>
         </form>
         {%endblock%}
       </div>
