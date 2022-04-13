@@ -79,8 +79,8 @@
                 {% for visitor in visitors %}
                     <div class="col-2">
                             <div class="card text-center" style="width: 13rem;">
-                                <img class="card-img-top" src="images/portrait-woman.jpg" style="width:13rem;"
-                                    alt="Card image cap">
+                                <img class="card-img-top" src="{{ visitor.visitor_portrait.url }}" style="width:13rem;"
+                                    alt="{{visitor.visitor_portrait.url}}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{visitor.first_name}} {{visitor.last_name}}</h5>
                                 </div>

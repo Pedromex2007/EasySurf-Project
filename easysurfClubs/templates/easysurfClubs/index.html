@@ -79,7 +79,7 @@
                 {% for club in clubs %}
                     <div class="col-3">
                         <div class="card text-center" style="width: 17rem;">
-                            <img class="card-img-top" src="images/golf-club.jpg" style="width:17rem;" alt="Card image cap">
+                            <img class="card-img-top" src="{{ club.club_portrait_url }}" style="width:17rem;" alt="{{ club.club_portrait_url }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{club.name}}</h5>
                                 <p class="card-text">{{club.desc}}</p>
