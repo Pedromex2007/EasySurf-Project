@@ -8,6 +8,8 @@ class Visitor(models.Model):
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=12)
 
+    visitor_portrait = models.ImageField(default=None, null=True, upload_to="images/")
+
     resident = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 class OrientationResidentDate(models.Model):
