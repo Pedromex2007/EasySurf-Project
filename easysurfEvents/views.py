@@ -35,6 +35,7 @@ class EventDetailView(LoginRequiredMixin, DetailView):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
 
+
         crnt_event = self.object
 
         if request.user in crnt_event.subscribers.all():

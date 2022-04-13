@@ -1,54 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
+{% load static %}
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Hugo 0.88.1">
-        <title>Test</title>
-    
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/grid/">
-    
-        
-    
-        <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-        <style>
-          .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-          }
-    
-          @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-              font-size: 3.5rem;
-            }
-          }
-        </style>
-    
-        
-        <!-- Custom styles for this template -->
-        <link href="grid.css" rel="stylesheet">
-      </head>
-      <body class="py-4">
-  <body>
-    {% for club in clubs %}
-        <div class="card border-light mb-3" style="max-width: 58rem;">
-            <div class="card-header">{{club.name}}</div>
-            <div class="card-body">{{club.desc}}</div>
-            <h5 class="card-title"><a href="{% url 'club-clubdetail' club.id %}">Examine</a></h5>
-            <!-- <p class="card-text">{{post.content}}</p> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'easysurfHome/styles.css' %}">
+    <title>Easy Surf</title>
+</head>
+
+<body style="overflow-x: hidden;">
+    <header class="row no-gutters">
+        <div class="col d-flex Ebanner text-light ">
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
+                    Surf</a></h1>
+            <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
+        </div>
+        <div class="col Ebanner text-right">
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+        </div>
+    </header>
+
+    <div class="row no-gutters">
+        <div class="col-2 bg-primary text-light" style="min-height:100%; height:100vh;">
+            <ul class="list-group list-group-flush text-center">
+                <a href="{% url 'home-dashboard' %}">
+                    <li class="list-group-item bg-primary"><i class="bi bi-house-door-fill text-white"
+                            style="font-size: 30px"></i>
+                    </li>
+                </a>
+                <a href="{% url 'update-info' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Personal Information</li>
+                </a>
+                <a href="{% url 'home-orientation' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Orientation Meeting</li>
+                </a>
+                <a href="{% url 'home-checklist' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Registration Checklist</li>
+                </a>
+                <a href="{% url 'fees-base' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Community Fees</li>
+                </a>
+                <a href="{% url 'surveys-home' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Questionnaire</li>
+                </a>
+                <a href="{% url 'event-list' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Events</li>
+                </a>
+                <a href="{% url 'issues-list' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Voting</li>
+                </a>
+                <a href="{% url 'visitors-list' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Visitor Information</li>
+                </a>
+                <a href="#" class="text-white">
+                    <li class="list-group-item bg-dark">Clubs and Committees</li>
+                </a>
+            </ul>
+        </div>
+
+        <div class="col-10">
+            <div class="row mb-3">
+                <div class="col-11 text-center">
+                    <h1 class="display-4">Clubs and Committees</h1>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="clubs-create.html" data-toggle="tooltip" data-placement="bottom"
+                        title="Create new event"><i class="bi bi-plus-square" style="font-size: 3rem;"></i></a>
+                </div>
+            </div>
+
+            <div class="row mb-4 px-3">
+                {% for club in clubs %}
+                    <div class="col-3">
+                        <div class="card text-center" style="width: 17rem;">
+                            <img class="card-img-top" src="images/golf-club.jpg" style="width:17rem;" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{club.name}}</h5>
+                                <p class="card-text">{{club.desc}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Main Plaza</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
-    <form action="" method="POST">
-      {% csrf_token %}
-      <button>Submit</button>
-    </form>
-  </body>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
