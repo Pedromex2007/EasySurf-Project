@@ -77,7 +77,11 @@
                                 <td class="checklist-text">{{invoice.title}}</td>
                                 <td>
                                     <form method="POST">{% csrf_token %}
-                                        <button type="button" name="{{invoice.id}}" class="btn btn-lg btn-primary">Pay</button>
+                                        {% if invoice.paid %}
+                                            <a href="#"><button type="button" class="btn btn-lg btn-secondary" disabled>Pay</button></a>
+                                        {% else %}
+                                            <a href="{% url 'fees-detail' invoice.id %}"><button type="button" class="btn btn-lg btn-primary">Pay</button>
+                                        {% endif %}
                                     </form>
                                 </td>
                             </tr>
