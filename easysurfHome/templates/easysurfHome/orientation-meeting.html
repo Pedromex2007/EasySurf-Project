@@ -17,36 +17,50 @@
 <body style="overflow:hidden">
     <header class="row no-gutters">
         <div class="col d-flex Ebanner text-light ">
-            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="dashboard.html" class="banner-link">Easy
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
                     Surf</a></h1>
             <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
         </div>
         <div class="col Ebanner text-right">
-            <h5 class="m-3"><a href="index.html" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
         </div>
     </header>
 
     <div class="row">
         <div class="col-2 bg-primary text-light" style="min-height:100%; height:100vh;">
             <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item bg-primary"><a href="dashboard.html"><i
-                            class="bi bi-house-door-fill text-white" style="font-size: 30px"></i></a>
-                </li>
-                <li class="list-group-item bg-primary"><a href="personal-info.html" class="text-white">Personal
-                        Information</a>
-                </li>
-                <li class="list-group-item bg-primary"><a href="#" class="text-white" style="display:block;">Orientation
-                        Meeting</a></li>
-                <li class="list-group-item list-group-item-action bg-primary"><a href="registration-checklist.html"
-                        class="text-white">Registration
-                        Checklist</a></li>
-                <li class="list-group-item bg-primary"><a href="#" class="text-white">Community Fees</a></li>
-                <li class="list-group-item bg-dark"><a href="questionnaire.html" class="text-white">Questionnaire</a>
-                </li>
-                <li class="list-group-item bg-primary"><a href="#" class="text-white">Events</a></li>
-                <li class="list-group-item bg-primary"><a href="#" class="text-white">Voting</a></li>
-                <li class="list-group-item bg-primary"><a href="#" class="text-white">Visitor Information</a></li>
-                <li class="list-group-item bg-primary"><a href="#" class="text-white">Clubs and Committees</a></li>
+                <a href="{% url 'home-dashboard' %}">
+                    <li class="list-group-item bg-primary"><i class="bi bi-house-door-fill text-white"
+                            style="font-size: 30px"></i>
+                    </li>
+                </a>
+                <a href="{% url 'update-info' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Personal Information</li>
+                </a>
+                <a href="#" class="text-white">
+                    <li class="list-group-item bg-dark">Orientation Meeting</li>
+                </a>
+                <a href="{% url 'home-checklist' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Registration Checklist</li>
+                </a>
+                <a href="{% url 'fees-base' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Community Fees</li>
+                </a>
+                <a href="{% url 'surveys-home' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Questionnaire</li>
+                </a>
+                <a href="{% url 'event-list' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Events</li>
+                </a>
+                <a href="{% url 'issues-list' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Voting</li>
+                </a>
+                <a href="{% url 'visitors-list' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Visitor Information</li>
+                </a>
+                <a href="{% url 'clubs-home' %}" class="text-white">
+                    <li class="list-group-item bg-primary">Clubs and Committees</li>
+                </a>
             </ul>
         </div>
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -9,56 +10,55 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'easysurfHome/styles.css' %}">
     <title>Easy Surf</title>
 </head>
 
 <body style="overflow-x: hidden;">
     <header class="row no-gutters">
         <div class="col d-flex Ebanner text-light ">
-            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="dashboard.html" class="banner-link">Easy
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
                     Surf</a></h1>
             <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
         </div>
         <div class="col Ebanner text-right">
-            <h5 class="m-3"><a href="index.html" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
         </div>
     </header>
 
     <div class="row no-gutters">
         <div class="col-2 bg-primary text-light" style="min-height:100%; height:100vh;">
             <ul class="list-group list-group-flush text-center">
-                <a href="dashboard.html">
+                <a href="{% url 'home-dashboard' %}">
                     <li class="list-group-item bg-primary"><i class="bi bi-house-door-fill text-white"
                             style="font-size: 30px"></i>
                     </li>
                 </a>
-                <a href="personal-info.html" class="text-white">
+                <a href="{% url 'update-info' %}" class="text-white">
                     <li class="list-group-item bg-primary">Personal Information</li>
                 </a>
-                <a href="orientation-meeting.html" class="text-white">
+                <a href="{% url 'home-orientation' %}" class="text-white">
                     <li class="list-group-item bg-primary">Orientation Meeting</li>
                 </a>
-                <a href="registration-checklist.html" class="text-white">
+                <a href="{% url 'home-checklist' %}" class="text-white">
                     <li class="list-group-item bg-primary">Registration Checklist</li>
                 </a>
-                <a href="fees.html" class="text-white">
+                <a href="{% url 'fees-base' %}" class="text-white">
                     <li class="list-group-item bg-primary">Community Fees</li>
                 </a>
-                <a href="questionnaire.html" class="text-white">
+                <a href="{% url 'surveys-home' %}" class="text-white">
                     <li class="list-group-item bg-primary">Questionnaire</li>
                 </a>
-                <a href="events.html" class="text-white">
+                <a href="{% url 'event-list' %}" class="text-white">
                     <li class="list-group-item bg-primary">Events</li>
                 </a>
-                <a href="voting.html" class="text-white">
+                <a href="{% url 'issues-list' %}" class="text-white">
                     <li class="list-group-item bg-primary">Voting</li>
                 </a>
                 <a href="#" class="text-white">
-                    <li class="list-group-item bg-dark">Visitor
-                        Information</li>
+                    <li class="list-group-item bg-dark">Visitor Information</li>
                 </a>
-                <a href="clubs.html" class="text-white">
+                <a href="{% url 'clubs-home' %}" class="text-white">
                     <li class="list-group-item bg-primary">Clubs and Committees</li>
                 </a>
             </ul>
@@ -70,7 +70,7 @@
                     <h1 class="display-4">Registered Visitors</h1>
                 </div>
                 <div class="col-1 text-center">
-                    <a href="visitor-create.html" data-toggle="tooltip" data-placement="bottom"
+                    <a href="{% url 'visitors-create' %}" data-toggle="tooltip" data-placement="bottom"
                         title="Create new event"><i class="bi bi-plus-square" style="font-size: 3rem;"></i></a>
                 </div>
             </div>
@@ -89,20 +89,21 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="col-2">
-                    <div class="card text-center" style="width: 13rem;">
-                        <img class="card-img-top" src="images/portrait-woman.jpg" style="width:13rem;"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Janett Doe</h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Sister</li>
-                            <li class="list-group-item">(954) - 789 - 1967</li>
-                        </ul>
+                {% for visitor in visitors %}
+                    <div class="col-2">
+                            <div class="card text-center" style="width: 13rem;">
+                                <img class="card-img-top" src="images/portrait-woman.jpg" style="width:13rem;"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{visitor.first_name}} {{visitor.last_name}}</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{visitor.visitor_relationship}}</li>
+                                    <li class="list-group-item">{{visitor.phone_number}}</li>
+                                </ul>
+                            </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

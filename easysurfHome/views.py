@@ -4,11 +4,14 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import (
-    TemplateView
+    TemplateView,
+    CreateView,
+    ListView,
 )
 
 from account.models import ResidentChecklist
-from .models import OrientationResidentDate
+from .models import OrientationResidentDate, Visitor
+from .forms import VisitorForm
 
 class HomePageView(TemplateView):
     template_name = 'easysurfHome/home.html'
@@ -84,3 +87,37 @@ class OrientationView(LoginRequiredMixin, TemplateView):
             print("Gotta select a date!")
             #TODO: Raise an error and print to screen, but actually that's pretty hard and we ain't got time so nevermind.
             return HttpResponseRedirect(self.request.path_info)
+
+class VisitorListView(LoginRequiredMixin, ListView):
+    '''This view lists out all the active fees.'''
+    model = Visitor
+    login_url = 'login'
+    template_name = 'easysurfHome/visitors.html'
+    context_object_name = 'visitors'
+
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        context = self.get_context_data()
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        context = self.get_context_data()
+        return render(request, self.template_name, context)
+
+    def get_queryset(self):
+        return Visitor.objects.filter(resident = self.request.user)
+
+class VisitorCreateView(LoginRequiredMixin, CreateView):
+    '''Users should be logged in to access this page.'''
+    form_class = VisitorForm
+    login_url = 'login'
+    template_name = 'easysurfHome/visitor-create.html'
+
+    def form_valid(self, form):
+        form.instance.resident = self.request.user
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return '../'
