@@ -27,6 +27,12 @@ class Visitor(models.Model):
 
     resident = models.ForeignKey(Account, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.first_name
+
+    def get_relationship(self):
+        return self.Relationship(self.visitor_relationship).label
+
 class OrientationResidentDate(models.Model):
     resident = models.ForeignKey(Account, on_delete=models.CASCADE)
     orientation_date = models.DateTimeField(default=None, blank=True, null=True)
