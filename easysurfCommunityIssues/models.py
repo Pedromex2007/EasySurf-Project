@@ -20,6 +20,9 @@ class Issue(models.Model):
     class Meta:
         ordering = ['date_posted']
 
+    def __str__(self):
+        return self.title
+
     def get_upvotes(self):
         return self.upvotes
 
