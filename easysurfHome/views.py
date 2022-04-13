@@ -14,12 +14,12 @@ class HomePageView(TemplateView):
     template_name = 'easysurfHome/home.html'
 
 class DashboardView(LoginRequiredMixin, TemplateView):
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfHome/dashboard.html'
     redirect_field_name =  template_name
 
 class ChecklistView(LoginRequiredMixin, TemplateView):
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfHome/registration-checklist.html'
 
     def get(self, request, *args, **kwargs):
@@ -44,7 +44,7 @@ class ChecklistView(LoginRequiredMixin, TemplateView):
         return self.render_to_response(context)
 
 class OrientationView(LoginRequiredMixin, TemplateView):
-    login_url = 'easysurf-home'
+    login_url = 'login'
     template_name = 'easysurfHome/orientation-meeting.html'
 
     def get(self, request, *args, **kwargs):
