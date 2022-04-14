@@ -35,6 +35,9 @@ ALLOWED_HOSTS = ['easy-surf.herokuapp.com', 'localhost']
 INSTALLED_APPS = [
 
     #IMPLEMENTED APPS
+    'admin_interface',
+    'colorfield',
+
     'easysurfHome.apps.EasysurfhomeConfig',
     'account',
     'easysurfQuestionnaire',
@@ -50,7 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
+
+X_FRAME_OPTIONS='SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
