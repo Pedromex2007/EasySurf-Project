@@ -74,25 +74,25 @@
             <h2 class="quest-desc"></h2>
         </div>
     -->
-                <div class="row mb-4">
-                    {% for survey in surveys %}
-                        <div class="col">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    Featured
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{survey.name}}</h5>
-                                    <p class="card-text">{{survey.desc}}</p>
-                                    <a href="{% url 'survey-surveydetail' survey.id %}" class="btn btn-primary">Take Survey</a>
-                                </div>
-                                <div class="card-footer text-muted">
-                                    2 days ago
-                                </div>
+            <div class="card-columns">
+                {% for survey in surveys %}
+                    <div class="col">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                Featured
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{survey.name}}</h5>
+                                <p class="card-text">{{survey.desc}}</p>
+                                <a href="{% url 'survey-surveydetail' survey.id %}" class="btn btn-primary">Take Survey</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
+            </div>
 
         </div>
         </main>

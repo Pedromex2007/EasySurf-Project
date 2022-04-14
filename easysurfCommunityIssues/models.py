@@ -24,7 +24,7 @@ class Issue(models.Model):
         return self.title
 
     def get_content_summary(self):
-        return self.content[:20]
+        return self.content[0:70] + "..."
 
     def get_upvotes(self):
         return self.upvotes
