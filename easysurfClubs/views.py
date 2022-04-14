@@ -2,9 +2,11 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import (
     ListView, 
     DetailView,
+    CreateView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Club
+from .forms import ClubForm
 from django.http import HttpResponseRedirect
 from account.models import ResidentChecklist
 
@@ -63,3 +65,17 @@ class ClubDetailView(LoginRequiredMixin, DetailView):
         ctx['clubs'] = self.get_object()
  
         return ctx
+
+class ClubCreateView(LoginRequiredMixin, CreateView):
+    '''Users should be logged in to access this page.'''
+    form_class = ClubForm
+    login_url = 'login'
+    template_name = 'easysurfClubs/clubs_create.html'
+
+    def form_valid(self, form):
+        form.instance.resident = self.request.user
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return '../'
