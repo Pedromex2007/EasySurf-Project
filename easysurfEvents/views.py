@@ -69,7 +69,7 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     template_name = 'easysurfEvents/events_create.html'
 
     def form_valid(self, form):
-        form.instance.resident = self.request.user
+        form.instance.poster = self.request.user
 
         return super().form_valid(form)
 
