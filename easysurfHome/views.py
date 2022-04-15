@@ -16,6 +16,10 @@ from .forms import VisitorForm
 class HomePageView(TemplateView):
     template_name = 'easysurfHome/home.html'
 
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return HttpResponseRedirect('/dashboard')
+
 class DashboardView(LoginRequiredMixin, TemplateView):
     login_url = 'login'
     template_name = 'easysurfHome/dashboard.html'
