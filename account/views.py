@@ -49,6 +49,8 @@ def update_account_info(request):
                 "username": request.user.username,
                 "home_address": request.user.home_address,
                 "phone_number": request.user.phone_number,
+                "first_name": request.user.first_name,
+                "last_name": request.user.last_name,
             }
         )
     context['account_form'] = form
