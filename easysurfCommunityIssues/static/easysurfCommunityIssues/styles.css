@@ -1,0 +1,82 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.Ebanner {
+    background-color: #0c57b3;
+}
+
+a.banner-link {
+    color: white;
+}
+
+a.banner-link:link {
+    color: white;
+}
+
+/* visited link */
+a.banner-link:visited {
+    color: white;
+}
+
+/* mouse over link */
+a.banner-link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* selected link */
+a.banner-link:active {
+    color: white;
+}
+
+a.dash-mod {
+    color: black;
+}
+
+a.dash-mod:link {
+    color: black;
+}
+
+/* visited link */
+a.dash-mod:visited {
+    color: black;
+}
+
+/* mouse over link */
+a.dash-mod:hover {
+    color: black;
+}
+
+/* selected link */
+a.dash-mod:active {
+    color: black;
+}
+
+.carousel-inner {
+    border-top: 10px;
+    border-left: 10px;
+    border-right: 10px;
+    border-bottom: 00px;
+    border-color: #0c57b3;
+    border-style: solid;
+}
+
+.checklist-icon {
+    font-size: 2rem;
+}
+
+.checklist-text {
+    font-size: 1.5rem;
+}
+
+.light-blue-bg {
+    background-color: #66B0FF;
+}
+
+input[type="date"] {
+    background: transparent;
+    color: white;
+    font-size: 1.5rem;
+}

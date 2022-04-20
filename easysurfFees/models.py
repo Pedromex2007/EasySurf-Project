@@ -6,6 +6,9 @@ from django.utils import timezone
 class Invoice(models.Model):
     title = models.CharField(max_length=50)
     content = models.CharField(max_length=500)
+
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, default=None)
+
     date_generated = models.DateTimeField(default=timezone.now)
     date_due = models.DateTimeField(default=None, blank=True, null=True)
     

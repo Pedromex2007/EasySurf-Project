@@ -2,10 +2,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import (
     ListView, 
     DetailView,
+    CreateView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event
 from django.http import HttpResponseRedirect
+from .forms import EventForm
 
 class EventListView(LoginRequiredMixin, ListView):
     '''This view lists out all the active events.'''
@@ -35,6 +37,7 @@ class EventDetailView(LoginRequiredMixin, DetailView):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
 
+
         crnt_event = self.object
 
         if request.user in crnt_event.subscribers.all():
@@ -53,9 +56,22 @@ class EventDetailView(LoginRequiredMixin, DetailView):
         crnt_event.subscribers.add(current_user)
         crnt_event.save()
 
-        if request.POST.get("event_sub"):
-            return HttpResponseRedirect('../')
+        return HttpResponseRedirect('../')
 
     def get_context_data(self, **kwargs):    
         ctx = super(EventDetailView, self).get_context_data(**kwargs)
         return ctx
+
+class EventCreateView(LoginRequiredMixin, CreateView):
+    '''Users should be logged in to access this page.'''
+    form_class = EventForm
+    login_url = 'login'
+    template_name = 'easysurfEvents/events_create.html'
+
+    def form_valid(self, form):
+        form.instance.poster = self.request.user
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return '../'

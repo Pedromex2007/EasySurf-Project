@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from account.forms import AccountAuthenticationForm, AccountUpdateForm
+from .models import ResidentChecklist
 
 def logout_view(request):
     logout(request)
@@ -10,7 +11,7 @@ def login_view(request):
     context = {}
     user = request.user
     if(user.is_authenticated):
-        return redirect('easysurf-home')
+        return redirect('home-dashboard')
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -20,7 +21,7 @@ def login_view(request):
 
             if(user):
                 login(request, user)
-                return redirect('easysurf-home')
+                return redirect('home-dashboard')
     else:
         form = AccountAuthenticationForm()
     context['login_form'] = form
@@ -29,13 +30,17 @@ def login_view(request):
 
 def update_account_info(request):
     if not (request.user.is_authenticated):
-        return redirect('easysurf-home')
+        return redirect('login')
 
     context = {}
 
     if request.POST:
         form = AccountUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
+            if ResidentChecklist.objects.filter(resident_id=request.user.id).exists():
+                current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
+                current_resident.confirmed_personal_info = True
+                current_resident.save()
             form.save()
     else:
         form = AccountUpdateForm (

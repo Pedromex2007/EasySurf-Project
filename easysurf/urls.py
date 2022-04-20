@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 # easysurfHome will be the front page of the site.
@@ -25,4 +27,5 @@ urlpatterns = [
     path('clubs/', include('easysurfClubs.urls')),
     path('issues/', include('easysurfCommunityIssues.urls')),
     path('events/', include('easysurfEvents.urls')),
-]
+    path('fees/', include('easysurfFees.urls')),
+]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
