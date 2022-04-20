@@ -76,6 +76,9 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.first_name + ", " + self.last_name
 
+    def get_first_name(self):
+        return self.first_name
+
     def has_perm(self, perm, obj=None):
         return self.is_admin
 

@@ -27,7 +27,9 @@
     </header>
 
     <header class="container-fluid text-center py-4">
-        <h1 class="display-3">Dashboard</h1>
+        {% if user.is_authenticated %}
+            <h1 class="display-3">Welcome, {{ user.get_first_name }}!</h1>
+        {% endif %}
     </header>
     <div class="row mb-4">
         <div class="col">
