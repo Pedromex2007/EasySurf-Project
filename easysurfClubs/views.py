@@ -72,10 +72,5 @@ class ClubCreateView(LoginRequiredMixin, CreateView):
     login_url = 'login'
     template_name = 'easysurfClubs/clubs_create.html'
 
-    def form_valid(self, form):
-        form.instance.resident = self.request.user
-
-        return super().form_valid(form)
-
     def get_success_url(self):
         return '../'

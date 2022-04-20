@@ -75,8 +75,8 @@ a.dash-mod:active {
     background-color: #66B0FF;
 }
 
-input[type="date"] {
+input[type="date-orientation"] {
     background: transparent;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 1.5rem;
 }

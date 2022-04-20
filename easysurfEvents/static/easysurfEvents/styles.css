@@ -74,9 +74,3 @@ a.dash-mod:active {
 .light-blue-bg {
     background-color: #66B0FF;
 }
-
-input[type="date"] {
-    background: transparent;
-    color: white;
-    font-size: 1.5rem;
-}
