@@ -48,6 +48,10 @@ class ClubDetailView(LoginRequiredMixin, DetailView):
             current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
             current_resident.joined_club = True
             current_resident.save()
+        else:
+            user_checklist = ResidentChecklist(resident = request.user)
+            user_checklist.joined_club = True
+            user_checklist.save()
 
         return HttpResponseRedirect("../")
 

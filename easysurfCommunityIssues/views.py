@@ -40,6 +40,10 @@ class IssueDetailView(LoginRequiredMixin, DetailView):
             current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
             current_resident.voted_issue = True
             current_resident.save()
+        else:
+            user_checklist = ResidentChecklist(resident = request.user)
+            user_checklist.voted_issue = True
+            user_checklist.save()
 
         crntIssue = self.get_object()
 

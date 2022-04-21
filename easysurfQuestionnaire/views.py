@@ -67,6 +67,10 @@ class SurveyDetailView(LoginRequiredMixin, DetailView):
             current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
             current_resident.completed_survey = True
             current_resident.save()
+        else:
+            user_checklist = ResidentChecklist(resident = request.user)
+            user_checklist.completed_survey = True
+            user_checklist.save()
 
         #crntSurvey = self.get_object()
         #v = Surveyee(user=request.user, survey=crntSurvey)

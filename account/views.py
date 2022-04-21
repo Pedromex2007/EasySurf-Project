@@ -42,6 +42,10 @@ def update_account_info(request):
                 current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
                 current_resident.confirmed_personal_info = True
                 current_resident.save()
+            else:
+                user_checklist = ResidentChecklist(resident = request.user)
+                user_checklist.confirmed_personal_info = True
+                user_checklist.save()
             return redirect('login')
     else:
         form = AccountUpdateForm (

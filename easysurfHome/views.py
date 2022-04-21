@@ -74,6 +74,11 @@ class OrientationView(LoginRequiredMixin, TemplateView):
                 resident_checklist = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
                 resident_checklist.orientation = True
                 resident_checklist.save()
+            else:
+                user_checklist = ResidentChecklist(resident = request.user)
+                user_checklist.orientation = True
+                user_checklist.save()
+            
                 
             thedate = request.POST.get("orientation-date")
 
