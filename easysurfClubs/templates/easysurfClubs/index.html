@@ -90,7 +90,13 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">{{club.location}}</li>
                             <li class="list-group-item">{{club.meet_times}}</li>
-                            <li class="list-group-item"><a href="#" class="btn btn-primary">Join</a></li>
+
+                            {% if user.active_club.id is club.id %}
+                              <a href="#" class="btn btn-dark">Joined!</a>
+                            {% else %}
+                              <li class="list-group-item"><a href="{% url 'club-clubdetail' club.id %}" class="btn btn-primary">Join</a></li>
+                            {% endif %}
+
                         </ul>
                     </div>
                 </div>

@@ -36,10 +36,20 @@ class ClubDetailView(LoginRequiredMixin, DetailView):
     login_url = 'login'
 
     def get(self, request, *args, **kwargs):
+        current_user = request.user
+
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
 
-        return self.render_to_response(context)
+        current_user.active_club = self.get_object()
+        current_user.save()
+
+        if ResidentChecklist.objects.filter(resident_id=request.user.id).exists():
+            current_resident = ResidentChecklist.objects.filter(resident_id=request.user.id).first()
+            current_resident.joined_club = True
+            current_resident.save()
+
+        return HttpResponseRedirect("../")
 
     def post(self, request, *args, **kwargs):
         '''Override default POST function. Sets the active club for a user when they press the button.'''
@@ -71,6 +81,7 @@ class ClubCreateView(LoginRequiredMixin, CreateView):
     form_class = ClubForm
     login_url = 'login'
     template_name = 'easysurfClubs/clubs_create.html'
+    
 
     def get_success_url(self):
         return '../'
