@@ -12,6 +12,7 @@ from django.views.generic import (
 from account.models import ResidentChecklist
 from .models import OrientationResidentDate, Visitor
 from .forms import VisitorForm
+from django.urls import reverse
 
 class HomePageView(TemplateView):
     template_name = 'easysurfHome/home.html'
@@ -129,4 +130,4 @@ class VisitorCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return '../'
+        return reverse("event-list")

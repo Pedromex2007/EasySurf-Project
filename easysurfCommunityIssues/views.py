@@ -10,6 +10,7 @@ from .models import Issue, IssueReply, Voter
 from .forms import CreateIssueForm, ReplyIssueForm
 from django.http import HttpResponseRedirect
 from account.models import ResidentChecklist
+from django.urls import reverse
 
 class IssueListView(LoginRequiredMixin, ListView):
     '''This view lists out all the issues all users have posted. Users can click on an issue to see all the responses and also agree/disagree with the post.'''
@@ -149,4 +150,4 @@ class IssueEditView(LoginRequiredMixin, UpdateView):
         return super().get(request, *args, **kwargs)
     
     def get_success_url(self):
-        return '../'
+        return '../../'

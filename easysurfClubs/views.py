@@ -9,6 +9,7 @@ from .models import Club
 from .forms import ClubForm
 from django.http import HttpResponseRedirect
 from account.models import ResidentChecklist
+from django.urls import reverse
 
 
 class ClubListView(LoginRequiredMixin, ListView):
@@ -88,4 +89,4 @@ class ClubCreateView(LoginRequiredMixin, CreateView):
     
 
     def get_success_url(self):
-        return '../'
+        return reverse("clubs-home")

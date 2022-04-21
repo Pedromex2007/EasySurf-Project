@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event
 from django.http import HttpResponseRedirect
 from .forms import EventForm
+from django.urls import reverse
 
 class EventListView(LoginRequiredMixin, ListView):
     '''This view lists out all the active events.'''
@@ -74,4 +75,4 @@ class EventCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return '../'
+        return reverse("event-list")
