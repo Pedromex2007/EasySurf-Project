@@ -17,16 +17,18 @@
 <body style="overflow:hidden">
     <header class="row no-gutters">
         <div class="col d-flex Ebanner text-light ">
-            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}"
+                    class="banner-link">Easy
                     Surf</a></h1>
             <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
         </div>
         <div class="col Ebanner text-right">
-            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log
+                    Out</a></h3>
         </div>
     </header>
 
-    <div class="row">
+    <div class="row no-gutters">
         <div class="col-2 bg-primary text-light" style="min-height:100%; height:100vh;">
             <ul class="list-group list-group-flush text-center">
                 <a href="{% url 'home-dashboard' %}">
@@ -76,12 +78,13 @@
                         class="container text-center light-blue-bg rounded w-50 h-50 d-flex justify-content-center align-items-center p-4">
 
                         {% if submitted_orientation_date %}
-                            <h3 class="text-dark">You have already selected {{ selected_date }} as your orientation date. If you would like, you may select a new date.
-                            </h3>
+                        <h3 class="text-dark">You have already selected {{ selected_date }} as your orientation date. If
+                            you would like, you may select a new date.
+                        </h3>
                         {% else %}
-                            <h3 class="text-dark">Please select the date you wish to have your orientation
-                                meeting.
-                            </h3>
+                        <h3 class="text-dark">Please select the date you wish to have your orientation
+                            meeting.
+                        </h3>
                         {% endif %}
 
                         <form action="" method="POST">
