@@ -17,16 +17,18 @@
 <body style="overflow:hidden">
     <header class="row no-gutters">
         <div class="col d-flex Ebanner text-light ">
-            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}"
+                    class="banner-link">Easy
                     Surf</a></h1>
             <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
         </div>
         <div class="col Ebanner text-right">
-            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log
+                    Out</a></h3>
         </div>
     </header>
 
-    <div class="row">
+    <div class="row no-gutters">
         <div class="col-2 bg-primary text-light" style="min-height:100%; height:100vh;">
             <ul class="list-group list-group-flush text-center">
                 <a href="{% url 'home-dashboard' %}">
@@ -82,41 +84,41 @@
                         <tbody>
                             <tr>
                                 {% if done_personal_info %}
-                                    <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
                                 {% else %}
-                                    <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
                                 {% endif %}
                                 <td class="checklist-text">Confirm personal information.</td>
                             </tr>
                             <tr>
                                 {% if orientation %}
-                                    <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
                                 {% else %}
-                                    <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
                                 {% endif %}
                                 <td class="checklist-text">Set up an orientation meeting date.</td>
                             </tr>
                             <tr>
                                 {% if completed_survey %}
-                                    <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
                                 {% else %}
-                                    <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
                                 {% endif %}
                                 <td class="checklist-text">Filled out a questionnaire.</td>
                             </tr>
                             <tr>
                                 {% if joined_club %}
-                                    <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
                                 {% else %}
-                                    <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
                                 {% endif %}
                                 <td class="checklist-text">Signed up for a club or committee.</td>
                             </tr>
                             <tr>
                                 {% if voted_issue %}
-                                    <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
+                                <th scope="row"><i class="bi bi-check-square checklist-icon text-success"></i></th>
                                 {% else %}
-                                    <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
+                                <th scope="row"><i class="bi bi-x-square checklist-icon text-danger"></i></th>
                                 {% endif %}
                                 <td class="checklist-text">Participated in a voting on community issues.</td>
                             </tr>

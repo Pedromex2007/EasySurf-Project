@@ -17,12 +17,14 @@
 <body style="overflow-x: hidden;">
     <header class="row no-gutters">
         <div class="col d-flex Ebanner text-light ">
-            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}" class="banner-link">Easy
+            <h1 class="px-3 text-center" style="font-size: 3rem"><a href="{% url 'home-dashboard' %}"
+                    class="banner-link">Easy
                     Surf</a></h1>
             <i class="bi bi-tsunami" style="font-size: 2.5rem"></i>
         </div>
         <div class="col Ebanner text-right">
-            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log Out</a></h3>
+            <h5 class="m-3"><a href="{% url 'logout' %}" class="banner-link" style="text-decoration:underline;">Log
+                    Out</a></h3>
         </div>
     </header>
 
@@ -77,19 +79,21 @@
 
             <div class="row mb-4 px-3">
                 {% for club in clubs %}
-                    <div class="col-3">
-                        <div class="card text-center" style="width: 17rem;">
-                            <img class="card-img-top" src="{{ club.club_portrait.url }}" style="width:17rem;" alt="{{ club.club_portrait.url }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{club.name}}</h5>
-                                <p class="card-text">{{club.desc}}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{club.location}}</li>
-                                <li class="list-group-item">{{club.meet_times}}</li>
-                            </ul>
+                <div class="col-3">
+                    <div class="card text-center" style="width: 17rem;">
+                        <img class="card-img-top" src="{{ club.club_portrait.url }}" style="width:17rem;"
+                            alt="{{ club.club_portrait.url }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{club.name}}</h5>
+                            <p class="card-text">{{club.desc}}</p>
                         </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{club.location}}</li>
+                            <li class="list-group-item">{{club.meet_times}}</li>
+                            <li class="list-group-item"><a href="#" class="btn btn-primary">Join</a></li>
+                        </ul>
                     </div>
+                </div>
                 {% endfor %}
             </div>
         </div>
